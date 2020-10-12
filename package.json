@@ -1,0 +1,45 @@
+{
+  "name": "publisher_redux",
+  "version": "0.1.0",
+  "private": true,
+  "main": "index.html",
+  "dependencies": {
+    "@tailwindcss/ui": "^0.6.2",
+    "autoprefixer": "^9.8.6",
+    "postcss-cli": "^8.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3",
+    "tailwindcss": "^1.8.13"
+  },
+  "scripts": {
+    "start": "concurrently -n Tailwind,React 'npm run watch:css' 'webpack-dev-server'",
+    "build": "npm run build:css && webpack",
+    "test": "jest",
+    "build:css": "tailwind build src/assets/tailwind.css -o src/assets/main.css",
+    "watch:css": "chokidar 'src/assets/tailwind.css' -c 'npm run build:css'"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "chokidar-cli": "^2.1.0",
+    "concurrently": "^5.3.0",
+    "css-loader": "^4.3.0",
+    "style-loader": "^2.0.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
