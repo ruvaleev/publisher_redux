@@ -1,54 +1,84 @@
 import React, { useReducer } from 'react';
 
 import { chaptersReducer } from '.../../redux/reducers/chapters';
+import { booksReducer } from '.../../redux/reducers/books';
 import { toggleReady, addChapter } from  '../../redux/actions/chapters';
+import { toggleEditable } from '../../redux/actions/books';
 
 
 class TableOfContents extends React.Component {
   render() {
     return (
       books.map((book, i) => (
-        <BookRow key={book.id} title={book.title} providedChapters={book.chapters}/>
+        <Book key={book.id} title={book.title} providedChapters={book.chapters}/>
       ))
     )
   }
 }
 
-const BookRow = ({title, providedChapters}) => {
-  const [chapters, dispatch] = useReducer(
+const Book = ({title, providedChapters}) => {
+  const [chapters, chaptersDispatch] = useReducer(
     chaptersReducer, providedChapters
+  )
+  const [editable, booksDispatch] = useReducer(
+    booksReducer, false
   )
   return (
     <table className='mx-12'>
-      <thead>
-        <tr><td className='p-2 text-xl'>{title}</td></tr>
-      </thead>
+      <BookHead title={title} booksDispatch={booksDispatch} editable={editable}/>
       <tbody>
-        {chapters.map((chapter, i) => (
-          <tr key={chapter.id}>
-            <td>{chapter.title}</td>
+        <ChaptersList chapters={chapters} chaptersDispatch={chaptersDispatch} editable={editable}/>
+        <ChapterForm chaptersDispatch={chaptersDispatch} editable={editable}/>
+      </tbody>
+    </table>
+  )
+}
+
+function BookHead ({title, booksDispatch, editable}) {
+  return(
+    <thead>
+      <tr>
+        <td className='p-2 text-xl'>{title}</td>
+        <td><button onClick={() => booksDispatch(toggleEditable(editable))}>Edit</button></td>
+      </tr>
+    </thead>
+  )
+}
+
+function ChaptersList ({chapters, chaptersDispatch, editable}) {
+  return (
+    chapters.map((chapter, i) => (
+      <tr key={chapter.id}>
+        <td>{chapter.title}</td>
+        {
+          editable &&
             <td>
-              <input onChange={() => dispatch(toggleReady(chapter.id))} 
+              <input onChange={() => chaptersDispatch(toggleReady(chapter.id))} 
                 type='checkbox'
                 checked={chapter.ready}/>
             </td>
-          </tr>
-        ))}
-        <tr>
-          <td>
-            <form onSubmit={
-              (e) => {
-                e.preventDefault();
-                dispatch(addChapter(e.target.title.value));
-              }
-            }>
-              <input type='text' name='title' className='mr-4'/>
-              <button>Add Chapter</button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+        }
+      </tr>
+    ))
+  )
+}
+
+function ChapterForm ({chaptersDispatch, editable}) {
+  return (
+    editable &&
+      <tr>
+        <td>
+          <form onSubmit={
+            (e) => {
+              e.preventDefault();
+              chaptersDispatch(addChapter(e.target.title.value));
+            }
+          }>
+            <input type='text' name='title' className='mr-4'/>
+            <button>Add Chapter</button>
+          </form>
+        </td>
+      </tr>
   )
 }
 
