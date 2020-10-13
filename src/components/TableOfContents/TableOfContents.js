@@ -1,44 +1,30 @@
 import React, { useReducer } from 'react';
 
 import { chaptersReducer } from '.../../redux/reducers/chapters';
-import { toggleReady } from  '../../redux/actions/chapters';
+import { toggleReady, addChapter } from  '../../redux/actions/chapters';
 
 
 class TableOfContents extends React.Component {
-  constructor(props) {
-    super(props);
-    this.editable = this.props.editable;
-  }
   render() {
     return (
-      this.editable ?
-        <>editable</>
-      :
-        <ContentsList/>
+      books.map((book, i) => (
+        <BookRow key={book.id} title={book.title} providedChapters={book.chapters}/>
+      ))
     )
   }
-}
-
-const ContentsList = () => {
-  return(
-    books.map((book, i) => (
-      <BookRow key={book.id} title={book.title} providedChapters={book.chapters}/>
-    ))
-  )
 }
 
 const BookRow = ({title, providedChapters}) => {
   const [chapters, dispatch] = useReducer(
     chaptersReducer, providedChapters
   )
-  let chaptersForRender = chapters || providedChapters
   return (
     <table className='mx-12'>
       <thead>
         <tr><td className='p-2 text-xl'>{title}</td></tr>
       </thead>
       <tbody>
-        {chaptersForRender.map((chapter, i) => (
+        {chapters.map((chapter, i) => (
           <tr key={chapter.id}>
             <td>{chapter.title}</td>
             <td>
@@ -48,14 +34,21 @@ const BookRow = ({title, providedChapters}) => {
             </td>
           </tr>
         ))}
+        <tr>
+          <td>
+            <form onSubmit={
+              (e) => {
+                e.preventDefault();
+                dispatch(addChapter(e.target.title.value));
+              }
+            }>
+              <input type='text' name='title' className='mr-4'/>
+              <button>Add Chapter</button>
+            </form>
+          </td>
+        </tr>
       </tbody>
     </table>
-  )
-}
-
-function toggleTodo(title){
-  return(
-    console.log(title)
   )
 }
 

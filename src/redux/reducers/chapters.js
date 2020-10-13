@@ -12,6 +12,8 @@ export const chaptersReducer = function (state = initialState, action) {
             : chapter
         )
       );
+    case chaptersActions.ADD_CHAPTER :
+      return state.concat({ id: state.length, title: action.title, ready: false })
     default:
       return state;
   }
