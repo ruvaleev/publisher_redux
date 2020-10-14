@@ -1,6 +1,6 @@
 import { chaptersActions } from '../actionTypes/chapters';
 
-export const toggleReady = (id) => ({
+export const toggleReadyChapter = (id) => ({
   id,
   type: chaptersActions.TOGGLE_READY
 })
