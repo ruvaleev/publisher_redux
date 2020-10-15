@@ -2,21 +2,22 @@ import React from 'react';
 
 import Checkbox from '../shared/Checkbox';
 import Title from '../shared/Title';
-import { toggleReadySubsection } from '../../redux/actions/subsections';
 
-function Subsections ({subsections, dispatch, editable}) {
+function Subsections ({subsections, dispatch, editable, bookId, chapterId}) {
   return (
     <td>
       <table>
         <tbody>
           {subsections && subsections.map((subsection, i) => (
-            <tr key={subsection.id} >
+            <tr key={`subsection_${subsection.id}`} >
               <Title title={subsection.title} className='pl-4'/>
               {
                 editable &&
                   <Checkbox
                     dispatch={dispatch}
-                    dispatchCallback={toggleReadySubsection(subsection.id)}
+                    dispatchCallback={{
+                      bookId: bookId, chapterId: chapterId, subsectionId: subsection.id
+                    }}
                     ready={subsection.ready}/>
               }
             </tr>

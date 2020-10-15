@@ -1,32 +1,27 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 
-import { chaptersReducer } from '.../../redux/reducers/chapters';
-import { booksReducer } from '.../../redux/reducers/books';
-import { addChapter } from  '../../redux/actions/chapters';
-import BookHead from './BookHead';
+import Title from '../shared/Title';
 import TitleForm from '../shared/TitleForm';
 import ChaptersList from './ChaptersList';
 
-const Book = ({title, providedChapters}) => {
-  const [chapters, chaptersDispatch] = useReducer(
-    chaptersReducer, providedChapters
-  )
-  const [editable, booksDispatch] = useReducer(
-    booksReducer, false
-  )
-
+  const Book = ({book, chapterAdd, subsectionAdd, readySubsectionToggle, editable = false}) => {
   return (
     <table className='mx-12'>
-      <BookHead title={title} booksDispatch={booksDispatch} editable={editable}/>
+      <thead><tr><Title title={book.title} className='p-2 text-xl'/></tr></thead>
       <tbody className='flex flex-col'>
-        <ChaptersList chapters={chapters} editable={editable}/>
+        <ChaptersList
+        chapters={book.chapters}
+        editable={editable}
+        subsectionAdd={subsectionAdd}
+        bookId={book.id}
+        readySubsectionToggle={readySubsectionToggle}/>
         <tr>
           {
             editable &&
               <TitleForm
                 title='Add chapter'
-                dispatch={chaptersDispatch}
-                dispatchCallback={addChapter}
+                bookId={book.id}
+                dispatch={chapterAdd}
                 className='pt-4'/>
           }
         </tr>

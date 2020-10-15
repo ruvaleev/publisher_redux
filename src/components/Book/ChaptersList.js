@@ -1,33 +1,40 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 
 import Title from '../shared/Title';
 import TitleForm from '../shared/TitleForm';
 import Subsections from './Subsections';
-import { subsectionsReducer } from '.../../redux/reducers/subsections';
-import { addSubsection } from '../../redux/actions/subsections';
 
-function ChaptersList ({chapters, editable}) {
+function ChaptersList ({chapters, editable, subsectionAdd, bookId, readySubsectionToggle}) {
   return (
     chapters.map((chapter, i) => (
-      <Chapter key={chapter.id} chapter={chapter} editable={editable}/>
+      <Chapter
+        key={chapter.id}
+        chapter={chapter}
+        editable={editable}
+        subsectionAdd={subsectionAdd}
+        bookId={bookId}
+        readySubsectionToggle={readySubsectionToggle}/>
     ))
   )
 }
 
-const Chapter = ({chapter, editable}) => {
-  const [subsections, subsectionsDispatch] = useReducer(
-    subsectionsReducer, chapter.subsections
-  )
+const Chapter = ({chapter, editable, subsectionAdd, readySubsectionToggle, bookId}) => {
   return (
-    <tr key={chapter.id} className='flex flex-col'>
+    <tr key={`chapter_${chapter.id}_book_${bookId}`} className='flex flex-col'>
       <Title title={chapter.title} className='flex'/>
-      <Subsections subsections={subsections} dispatch={subsectionsDispatch} editable={editable}/>
+      <Subsections
+        subsections={chapter.subsections}
+        bookId={bookId}
+        chapterId={chapter.id}
+        dispatch={readySubsectionToggle}
+        editable={editable}/>
       {
         editable &&
           <TitleForm
             title='Add subsection'
-            dispatch={subsectionsDispatch}
-            dispatchCallback={addSubsection}
+            dispatch={subsectionAdd}
+            bookId={bookId}
+            chapterId={chapter.id}
             className='pl-4'/>
       }
     </tr>

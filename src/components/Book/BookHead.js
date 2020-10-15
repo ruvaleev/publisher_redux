@@ -1,13 +1,12 @@
 import React from 'react';
 
 import Title from '../shared/Title';
-import { toggleEditable } from '../../redux/actions/books';
 
-function BookHead ({title, booksDispatch, editable}) {
+function BookHead ({title, dispatch, editable}) {
   return(
     <thead>
       <tr>
-        <td><button onClick={() => booksDispatch(toggleEditable(editable))}>Edit</button></td>
+        <td><button onClick={() => dispatch(editable)}>Edit</button></td>
         <Title title={title} className='p-2 text-xl'/>
       </tr>
     </thead>
