@@ -10,7 +10,7 @@ class TableOfContents extends React.Component {
     const editable = this.props.editable
     return (
       <>
-        <button onClick={() => this.props.bookToggleEditable(editable)}>Edit</button>
+        <button onClick={() => this.props.bookToggleEditable(editable)} className='fixed -m-16 text-xl '>Edit</button>
         {this.props.books.map((book, i) => (
           <Book
             key={`book_${book.id}`}

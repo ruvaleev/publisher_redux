@@ -1,0 +1,16 @@
+import React from 'react';
+
+import BookStatisticCard from './BookStatisticCard';
+
+const StatisticCard = ({books}) => {
+  return (
+    <div>
+      <h2 className='text-xl'>Books Statistic</h2>
+      {books.map((book, i) => {
+        return <BookStatisticCard key={i} book={book}/>
+      })}
+    </div>
+  )
+}
+
+export default StatisticCard;

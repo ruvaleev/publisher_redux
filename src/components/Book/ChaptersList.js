@@ -3,6 +3,7 @@ import React from 'react';
 import Title from '../shared/Title';
 import TitleForm from '../shared/TitleForm';
 import Subsections from './Subsections';
+import isReady from '../shared/isReady';
 
 function ChaptersList ({chapters, editable, subsectionAdd, bookId, readySubsectionToggle}) {
   return (
@@ -20,7 +21,7 @@ function ChaptersList ({chapters, editable, subsectionAdd, bookId, readySubsecti
 
 const Chapter = ({chapter, editable, subsectionAdd, readySubsectionToggle, bookId}) => {
   return (
-    <tr key={`chapter_${chapter.id}_book_${bookId}`} className='flex flex-col'>
+    <tr key={`chapter_${chapter.id}_book_${bookId}`} className={`flex flex-col ${isReady(chapter) && 'text-green-500'}`}>
       <Title title={chapter.title} className='flex'/>
       <Subsections
         subsections={chapter.subsections}

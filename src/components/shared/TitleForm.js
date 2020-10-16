@@ -6,6 +6,7 @@ function TitleForm ({bookId, chapterId, title, dispatch, className}) {
       <form onSubmit={(e) => {
         e.preventDefault();
         dispatch({bookId: bookId, chapterId: chapterId, title: e.target.title.value });
+        e.target.title.value = '';
       }}>
         <input type='text' name='title' className='mr-4'/>
         <button>{title}</button>
