@@ -4,7 +4,7 @@ import Title from '../shared/Title';
 import TitleForm from '../shared/TitleForm';
 import ChaptersList from './ChaptersList';
 
-  const Book = ({book, chapterAdd, subsectionAdd, readySubsectionToggle, editable = false}) => {
+  const Book = ({book, chapterAdd, subsectionAdd, editable = false}) => {
   return (
     <table className='mx-12'>
       <thead><tr><Title title={book.title} className='p-2 text-xl'/></tr></thead>
@@ -13,8 +13,7 @@ import ChaptersList from './ChaptersList';
         chapters={book.chapters}
         editable={editable}
         subsectionAdd={subsectionAdd}
-        bookId={book.id}
-        readySubsectionToggle={readySubsectionToggle}/>
+        bookId={book.id}/>
         <tr>
           {
             editable &&

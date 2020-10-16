@@ -2,10 +2,10 @@ import React from 'react';
 
 import Title from '../shared/Title';
 import TitleForm from '../shared/TitleForm';
-import Subsections from './Subsections';
+import SubsectionsList from '../SubsectionsCard';
 import isReady from '../shared/isReady';
 
-function ChaptersList ({chapters, editable, subsectionAdd, bookId, readySubsectionToggle}) {
+function ChaptersList ({chapters, editable, subsectionAdd, bookId}) {
   return (
     chapters.map((chapter, i) => (
       <Chapter
@@ -13,21 +13,18 @@ function ChaptersList ({chapters, editable, subsectionAdd, bookId, readySubsecti
         chapter={chapter}
         editable={editable}
         subsectionAdd={subsectionAdd}
-        bookId={bookId}
-        readySubsectionToggle={readySubsectionToggle}/>
+        bookId={bookId}/>
     ))
   )
 }
 
-const Chapter = ({chapter, editable, subsectionAdd, readySubsectionToggle, bookId}) => {
+const Chapter = ({chapter, editable, subsectionAdd, bookId}) => {
   return (
     <tr key={`chapter_${chapter.id}_book_${bookId}`} className={`flex flex-col ${isReady(chapter) && 'text-green-500'}`}>
       <Title title={chapter.title} className='flex'/>
-      <Subsections
-        subsections={chapter.subsections}
+      <SubsectionsList
         bookId={bookId}
         chapterId={chapter.id}
-        dispatch={readySubsectionToggle}
         editable={editable}/>
       {
         editable &&

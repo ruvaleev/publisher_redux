@@ -25,7 +25,7 @@ export const booksReducer = function (state = [], action) {
                   ? {
                       ...chapter,
                       subsections: chapter.subsections.concat(
-                        { id: book.chapters.length, title: action.title, ready: false }
+                        { id: chapter.subsections.length, title: action.title, ready: false }
                       )
                     }
                   : chapter

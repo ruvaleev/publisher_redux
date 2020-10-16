@@ -1,29 +1,6 @@
-import React from 'react';
-
-import Book from '../Book';
 import { connect } from 'react-redux';
-import { addChapter, addSubsection, toggleReadySubsection } from '../../redux/actions/books';
-import { toggleEditable } from '../../redux/actions/tableOfContents';
-
-class TableOfContents extends React.Component {
-  render() {
-    const editable = this.props.editable
-    return (
-      <>
-        <button onClick={() => this.props.bookToggleEditable(editable)} className='fixed -m-16 text-xl '>Edit</button>
-        {this.props.books.map((book, i) => (
-          <Book
-            key={`book_${book.id}`}
-            book={book}
-            editable={editable}
-            chapterAdd={this.props.chapterAdd}
-            subsectionAdd={this.props.subsectionAdd}
-            readySubsectionToggle={this.props.readySubsectionToggle}/>
-        ))}
-      </>
-    )
-  }
-}
+import { addChapter, addSubsection } from '../../redux/actions/books';
+import TableOfContents from './TableOfContents';
 
 const mapStateToProps = (state) => ({
   editable: state.tableOfContentsReducer.editable,
@@ -31,10 +8,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    bookToggleEditable: (editable) => dispatch(toggleEditable(editable)),
     chapterAdd: (data) => dispatch(addChapter(data)),
-    subsectionAdd: (data) => dispatch(addSubsection(data)),
-    readySubsectionToggle: (data) => dispatch(toggleReadySubsection(data))
+    subsectionAdd: (data) => dispatch(addSubsection(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableOfContents);

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Checkbox ({dispatch, dispatchCallback, ready}) {
+function Checkbox ({dispatch, dispatchParams, ready}) {
   return (
     <td>
-      <input onChange={() => dispatch(dispatchCallback)}  type='checkbox' checked={ready}/>
+      <input onChange={() => dispatch(dispatchParams)}  type='checkbox' checked={ready}/>
     </td>
   )
 }

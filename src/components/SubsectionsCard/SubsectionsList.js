@@ -3,19 +3,19 @@ import React from 'react';
 import Checkbox from '../shared/Checkbox';
 import Title from '../shared/Title';
 
-function Subsections ({subsections, dispatch, editable, bookId, chapterId}) {
+function SubsectionsList ({readySubsectionToggle, subsections, editable, bookId, chapterId}) {
   return (
     <td>
       <table>
         <tbody>
           {subsections && subsections.map((subsection, i) => (
-            <tr key={`subsection_${subsection.id}`} >
+            <tr key={`subsection_${subsection.id}_book_${bookId}_chapter_${chapterId}`} >
               <Title title={subsection.title} className='pl-4'/>
               {
                 editable &&
                   <Checkbox
-                    dispatch={dispatch}
-                    dispatchCallback={{
+                    dispatch={readySubsectionToggle}
+                    dispatchParams={{
                       bookId: bookId, chapterId: chapterId, subsectionId: subsection.id
                     }}
                     ready={subsection.ready}/>
@@ -27,4 +27,5 @@ function Subsections ({subsections, dispatch, editable, bookId, chapterId}) {
     </td>
   )
 }
-export default Subsections;
+
+export default SubsectionsList;
