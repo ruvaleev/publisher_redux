@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 
 import SubsectionsList from './SubsectionsList';
@@ -18,7 +17,7 @@ function fetchSubsections(books, currentFilter, bookId, chapterId) {
 
 const mapStateToProps = (state, ownProps) => ({
   subsections: fetchSubsections(
-    state.booksReducer.books, state.filtersReducer, ownProps.bookId, ownProps.chapterId
+    state.booksReducer.books, state.filtersReducer.value, ownProps.bookId, ownProps.chapterId
   )
 })
 
