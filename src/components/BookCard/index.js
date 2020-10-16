@@ -4,18 +4,14 @@ import { connect } from 'react-redux';
 import Title from '../shared/Title';
 import TitleForm from '../shared/TitleForm';
 import ChaptersList from './ChaptersList';
-import { addChapter, addSubsection } from '../../redux/actions/books';
+import { addChapter } from '../../redux/actions/books';
 
-  const Book = ({book, chapterAdd, subsectionAdd, editable}) => {
+  const BookCard = ({book, chapterAdd, editable}) => {
   return (
     <table className='mx-12'>
       <thead><tr><Title title={book.title} className='p-2 text-xl'/></tr></thead>
       <tbody className='flex flex-col'>
-        <ChaptersList
-        chapters={book.chapters}
-        editable={editable}
-        subsectionAdd={subsectionAdd}
-        bookId={book.id}/>
+        <ChaptersList chapters={book.chapters} bookId={book.id}/>
         <tr>
           {
             editable &&
@@ -36,8 +32,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  chapterAdd: (data) => dispatch(addChapter(data)),
-  subsectionAdd: (data) => dispatch(addSubsection(data))
+  chapterAdd: (data) => dispatch(addChapter(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Book);
+export default connect(mapStateToProps, mapDispatchToProps)(BookCard);

@@ -1,16 +1,11 @@
 import React from 'react';
 
-import Book from '../Book';
+import BookCard from '../BookCard';
 
-function BooksList ({books, editable, chapterAdd, subsectionAdd}) {
+function BooksList ({books}) {
   return (
     books.map((book, i) => (
-      <Book
-        key={`book_${book.id}`}
-        book={book}
-        editable={editable}
-        chapterAdd={chapterAdd}
-        subsectionAdd={subsectionAdd}/>
+      <BookCard key={`book_${book.id}`} book={book}/>
     ))
   )
 }

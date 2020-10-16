@@ -18,7 +18,8 @@ function fetchSubsections(books, currentFilter, bookId, chapterId) {
 const mapStateToProps = (state, ownProps) => ({
   subsections: fetchSubsections(
     state.booksReducer.books, state.filtersReducer.value, ownProps.bookId, ownProps.chapterId
-  )
+  ),
+  editable: state.tableOfContentsReducer.editable
 })
 
 const mapDispatchToProps = (dispatch) => ({
