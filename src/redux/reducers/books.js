@@ -1,62 +1,27 @@
+import { createReducer } from '@reduxjs/toolkit';
+
 import { booksActions } from '../actionTypes/books';
 
-export const booksReducer = function (state = [], action) {
-  switch (action.type) {
-    case booksActions.ADD_CHAPTER :
-      return { books: state.books.map(
-        (book) => (
-          book.id == action.bookId
-            ? {
-                ...book,
-                chapters: book.chapters.concat(
-                  { id: book.chapters.length, title: action.title, subsections: [] }
-                )
-              }
-            : book
-        )
-      )};
-    case booksActions.ADD_SUBSECTION :
-      return { books: state.books.map(
-        (book) => (
-          book.id == action.bookId
-            ? {...book, chapters: book.chapters.map(
-                (chapter) => (
-                  chapter.id == action.chapterId
-                  ? {
-                      ...chapter,
-                      subsections: chapter.subsections.concat(
-                        { id: chapter.subsections.length, title: action.title, ready: false }
-                      )
-                    }
-                  : chapter
-                )
-              )}
-            : book
-        )
-      )};
-    case booksActions.TOGGLE_SUBSECTION_READY :
-      return { books: state.books.map(
-        (book) => (
-          book.id == action.bookId
-            ? {...book, chapters: book.chapters.map(
-                (chapter) => (
-                  chapter.id == action.chapterId
-                  ? {
-                      ...chapter, subsections: chapter.subsections.map(
-                        (subsection) => (
-                          subsection.id == action.subsectionId
-                          ? { ...subsection, ready: !subsection.ready }
-                          : subsection
-                        )
-                      )
-                    }
-                  : chapter
-                )
-              )}
-            : book
-        )
-      )};
-    default:
-      return state;
-  }
-};
+const initialState = []
+
+export const booksReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(booksActions.ADD_CHAPTER, (state, action) => {
+      let book = state.books.find((book) => { return book.id == action.bookId })
+      book.chapters = book.chapters.concat({ id: book.chapters.length, title: action.title, subsections: [] })
+    })
+    .addCase(booksActions.ADD_SUBSECTION, (state, action) => {
+      let book = state.books.find((book) => { return book.id == action.bookId })
+      let chapter = book.chapters.find((chapter) => { return chapter.id == action.chapterId })
+      chapter.subsections =
+        chapter.subsections.concat({ id: chapter.subsections.length, title: action.title, ready: false })
+    })
+    .addCase(booksActions.TOGGLE_SUBSECTION_READY, (state, action) => {
+      let book = state.books.find((book) => { return book.id == action.bookId })
+      let chapter = book.chapters.find((chapter) => { return chapter.id == action.chapterId })
+      let subsection = chapter.subsections.find((subsection) => { return subsection.id == action.subsectionId })
+      subsection.ready = !subsection.ready
+    })
+    .addDefaultCase((state, action) => state)
+
+})

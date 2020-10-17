@@ -4,6 +4,7 @@
   "private": true,
   "main": "index.html",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "@tailwindcss/ui": "^0.6.2",
     "autoprefixer": "^9.8.6",
     "postcss-cli": "^8.1.0",
