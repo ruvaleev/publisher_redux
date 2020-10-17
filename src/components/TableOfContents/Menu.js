@@ -6,14 +6,12 @@ import { showAll, showUncompleted, showCompleted } from '../../redux/actions/fil
 
 function Menu ({editable, filter, showAll, showUncompleted, showCompleted, toggleEditable}) {
   return (
-    <>
-      <div className='fixed -m-16 text-xl'>
-        <button className='px-4' onClick={() => toggleEditable(editable)}>Edit</button>
-        <FilterButton filter={filter} title='Show All' callback={showAll}/>
-        <FilterButton filter={filter} title='Show Uncompleted' callback={showUncompleted}/>
-        <FilterButton filter={filter} title='Show Completed' callback={showCompleted}/>
-      </div>
-    </>
+    <div className='fixed -m-16 text-xl'>
+      <button className='px-4' onClick={() => toggleEditable(editable)}>Edit</button>
+      <FilterButton filter={filter} title='Show All' callback={showAll}/>
+      <FilterButton filter={filter} title='Show Uncompleted' callback={showUncompleted}/>
+      <FilterButton filter={filter} title='Show Completed' callback={showCompleted}/>
+    </div>
   )
 }
 

@@ -7,7 +7,7 @@ const StatisticCard = ({books}) => {
     <div>
       <h2 className='text-xl'>Books Statistic</h2>
       {books.map((book, i) => {
-        return <BookStatisticCard key={i} book={book}/>
+        return <BookStatisticCard key={'statistic_' + i} book={book}/>
       })}
     </div>
   )

@@ -9,14 +9,14 @@ const filters = {
   SHOW_UNCOMPLETED: subsection => !subsection.ready
 };
 
-function fetchSubsections (books, currentFilter, bookId, chapterId) {
+function selectSubsections (books, currentFilter, bookId, chapterId) {
   let book = books.find((book) => { return book.id == bookId })
   let chapter = book.chapters.find((chapter) => { return chapter.id == chapterId })
   return chapter.subsections.filter(filters[currentFilter])
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  subsections: fetchSubsections(
+  subsections: selectSubsections(
     state.booksReducer.books, state.filtersReducer.value, ownProps.bookId, ownProps.chapterId
   ),
   editable: state.tableOfContentsReducer.editable

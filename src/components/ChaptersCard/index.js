@@ -18,13 +18,13 @@ const filters = {
   SHOW_UNCOMPLETED: chapter => !isReady(chapter)
 };
 
-function fetchChapters (books, bookId, currentFilter) {
+function selectChapters (books, bookId, currentFilter) {
   let book = books.find((book) => { return book.id == bookId })
   return book.chapters.filter(filters[currentFilter])
 }
 
 const mapStateToProps = (state, ownProperty) => ({
-  chapters: fetchChapters(state.booksReducer.books, ownProperty.bookId, state.filtersReducer.value)
+  chapters: selectChapters(state.booksReducer.books, ownProperty.bookId, state.filtersReducer.value)
 })
 
 const mapDispatchToProps = (dispatch) => ({

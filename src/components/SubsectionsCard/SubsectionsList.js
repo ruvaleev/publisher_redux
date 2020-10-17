@@ -14,11 +14,10 @@ function SubsectionsList ({readySubsectionToggle, subsections, editable, bookId,
               {
                 editable &&
                   <Checkbox
-                    dispatch={readySubsectionToggle}
-                    dispatchParams={{
-                      bookId: bookId, chapterId: chapterId, subsectionId: subsection.id
-                    }}
-                    ready={subsection.ready}/>
+                    callback={() => readySubsectionToggle(
+                      {bookId: bookId, chapterId: chapterId, subsectionId: subsection.id}
+                    )}
+                    isChecked={subsection.ready}/>
               }
             </tr>
           ))}
