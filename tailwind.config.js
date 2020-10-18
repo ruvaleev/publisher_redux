@@ -3,7 +3,11 @@ module.exports =
     future: {},
     purge: [],
     theme: {
-      extend: {},
+      extend: {
+        padding: {
+          '30vh': '30vh'
+        } 
+      },
     },
     plugins: [
       require("tailwindcss"),

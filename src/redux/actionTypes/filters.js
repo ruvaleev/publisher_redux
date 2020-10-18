@@ -1,0 +1,5 @@
+export const filtersActions = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_UNCOMPLETED: 'SHOW_UNCOMPLETED',
+  SHOW_COMPLETED: 'SHOW_COMPLETED'
+}
