@@ -1,8 +1,14 @@
 import { connect } from 'react-redux';
+import { ActionCreators } from 'redux-undo';
 import TableOfContents from './TableOfContents';
 
 const mapStateToProps = (state) => ({
-  books: state.booksReducer.books
+  books: state.booksReducer.present.books
 })
 
-export default connect(mapStateToProps)(TableOfContents);
+const mapDispatchToProps = (dispatch) => ({
+  undo: () => dispatch(ActionCreators.undo()),
+  redo: () => dispatch(ActionCreators.redo())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableOfContents);

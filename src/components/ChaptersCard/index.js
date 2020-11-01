@@ -24,7 +24,7 @@ function selectChapters (books, bookId, currentFilter) {
 }
 
 const mapStateToProps = (state, ownProperty) => ({
-  chapters: selectChapters(state.booksReducer.books, ownProperty.bookId, state.filtersReducer.value)
+  chapters: selectChapters(state.booksReducer.present.books, ownProperty.bookId, state.filtersReducer.value)
 })
 
 const mapDispatchToProps = (dispatch) => ({

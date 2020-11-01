@@ -4,7 +4,7 @@ import StatisticCard from './StatisticCard';
 import isReady from '../shared/isReady';
 
 const mapStateToProps = (state) => ({
-  books: composeStatistic(state.booksReducer.books)
+  books: composeStatistic(state.booksReducer.present.books)
 })
 
 function composeStatistic (books) {

@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import { toggleEditable } from '../../redux/actions/tableOfContents';
 import { showAll, showUncompleted, showCompleted } from '../../redux/actions/filters';
 
-function Menu ({editable, filter, showAll, showUncompleted, showCompleted, toggleEditable}) {
+function Menu ({editable, filter, showAll, showUncompleted, showCompleted, toggleEditable, undo, redo}) {
   return (
     <div className='fixed -m-16 text-xl'>
       <button className='px-4' onClick={() => toggleEditable(editable)}>Edit</button>
       <FilterButton filter={filter} title='Show All' callback={showAll}/>
       <FilterButton filter={filter} title='Show Uncompleted' callback={showUncompleted}/>
       <FilterButton filter={filter} title='Show Completed' callback={showCompleted}/>
+      <button className='px-4' onClick={() => undo()}>Undo</button>
+      <button className='px-4' onClick={() => redo()}>Redo</button>
     </div>
   )
 }
