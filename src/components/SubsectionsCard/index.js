@@ -10,7 +10,7 @@ const filters = {
 };
 
 function selectSubsections (books, currentFilter, bookId, chapterId) {
-  let book = books.find((book) => { return book.id == bookId })
+  let book = books.find((book) => { return book._id == bookId })
   let chapter = book.chapters.find((chapter) => { return chapter.id == chapterId })
   return chapter.subsections.filter(filters[currentFilter])
 }

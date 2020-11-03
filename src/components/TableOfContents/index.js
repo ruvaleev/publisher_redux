@@ -3,6 +3,7 @@ import { ActionCreators } from 'redux-undo';
 import TableOfContents from './TableOfContents';
 
 const mapStateToProps = (state) => ({
+  isLoading: state.booksReducer.present.isLoading,
   books: state.booksReducer.present.books
 })
 

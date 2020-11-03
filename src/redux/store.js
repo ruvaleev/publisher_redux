@@ -1,12 +1,15 @@
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 
 import rootReducer from './reducers';
-import books from './books.json';
+import APIMiddleware from './middleware/API';
+
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  { booksReducer: { books: books } },
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancer(
+    applyMiddleware(APIMiddleware)
+  )
 );
 
 export default store;

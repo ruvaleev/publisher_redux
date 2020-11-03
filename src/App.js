@@ -6,6 +6,10 @@ import StatisticCard from './components/StatisticCard';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
+import { fetchBooks } from './redux/actions/books';
+
+store.dispatch(fetchBooks());
+
 function App() {
   return (
     <Provider store={store}>

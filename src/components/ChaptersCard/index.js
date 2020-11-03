@@ -19,7 +19,7 @@ const filters = {
 };
 
 function selectChapters (books, bookId, currentFilter) {
-  let book = books.find((book) => { return book.id == bookId })
+  let book = books.find((book) => { return book._id == bookId })
   return book.chapters.filter(filters[currentFilter])
 }
 
