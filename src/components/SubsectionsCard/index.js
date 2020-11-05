@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 
 import SubsectionsList from './SubsectionsList';
-import { toggleReadySubsection } from '../../redux/actions/books';
+// import { toggleSubsectionReady } from '../../redux/actions/books';
+import { toggleSubsectionReady } from '../../redux/slices/books';
 
 const filters = {
   SHOW_ALL: () => true,
@@ -23,7 +24,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  readySubsectionToggle: (data) => dispatch(toggleReadySubsection(data))
+  readySubsectionToggle: (data) => dispatch(toggleSubsectionReady(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubsectionsList);

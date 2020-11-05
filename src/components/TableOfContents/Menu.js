@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { toggleEditable } from '../../redux/actions/tableOfContents';
-import { showAll, showUncompleted, showCompleted } from '../../redux/actions/filters';
+import { toggleEditable } from '../../redux/slices/tableOfContents';
+import { showAll, showUncompleted, showCompleted } from '../../redux/slices/filters';
 
 function Menu ({editable, filter, showAll, showUncompleted, showCompleted, toggleEditable, undo, redo}) {
   return (
