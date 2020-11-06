@@ -7,8 +7,6 @@ const tableOfContentsSlice = createSlice({
   initialState,
   reducers: {
     toggleEditable(state, action) {
-      console.log('state in toogle editable')
-      console.log(state.editable)
       return {
         ...state,
         editable: !state.editable

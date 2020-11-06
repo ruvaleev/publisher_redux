@@ -5,7 +5,7 @@ import Title from '../shared/Title';
 import TitleForm from '../shared/TitleForm';
 import SubsectionsList from '../SubsectionsCard';
 import isReady from '../shared/isReady';
-import { addSubsection } from '../../redux/actions/books';
+import { addSubsection } from '../../redux/slices/books';
 
 
 const Chapter = ({chapter, editable, addSubsection, bookId}) => {

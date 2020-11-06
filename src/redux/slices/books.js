@@ -27,34 +27,21 @@ const booksSlice = createSlice({
   initialState,
   reducers: {
     addChapter(state, action) {
-      let book = state.books.find((book) => { return book._id == action.bookId })
-      book.chapters = book.chapters.concat({ id: book.chapters.length, title: action.title, subsections: [] })
+      let book = state.books.find((book) => { return book._id == action.payload.bookId })
+      book.chapters = book.chapters.concat({ id: book.chapters.length, title: action.payload.title, subsections: [] })
     },
     addSubsection(state, action) {
-      let book = state.books.find((book) => { return book._id == action.bookId })
-      let chapter = book.chapters.find((chapter) => { return chapter.id == action.chapterId })
+      let book = state.books.find((book) => { return book._id == action.payload.bookId })
+      let chapter = book.chapters.find((chapter) => { return chapter.id == action.payload.chapterId })
       chapter.subsections =
-        chapter.subsections.concat({ id: chapter.subsections.length, title: action.title, ready: false })
+        chapter.subsections.concat({ id: chapter.subsections.length, title: action.payload.title, ready: false })
     },
     toggleSubsectionReady(state, action) {
-      console.log('action')
-      console.log(action)
-      console.log('state is loading')
-      console.log(state.isLoading)
-      console.log('state boooks')
-      console.log(state.books)
-      console.log("inside loop")
       let book = state.books.find((book) => { 
-        console.log('book books')
-        console.log(book.books)
-        console.log(action.bookId)
-        console.log(book._id == action.bookId)
-        return book._id == action.bookId 
+        return book._id == action.payload.bookId 
       })
-      console.log('let book')
-      console.log(book)
-      let chapter = book.chapters.find((chapter) => { return chapter.id == action.chapterId })
-      let subsection = chapter.subsections.find((subsection) => { return subsection.id == action.subsectionId })
+      let chapter = book.chapters.find((chapter) => { return chapter.id == action.payload.chapterId })
+      let subsection = chapter.subsections.find((subsection) => { return subsection.id == action.payload.subsectionId })
       subsection.ready = !subsection.ready
     }
   },
@@ -71,7 +58,7 @@ const booksSlice = createSlice({
       ...state,
       isLoading: false,
       isError: true,
-      error: action.error
+      error: action.payload.error
     })
   }
 })

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import SubsectionsList from './SubsectionsList';
-// import { toggleSubsectionReady } from '../../redux/actions/books';
 import { toggleSubsectionReady } from '../../redux/slices/books';
 
 const filters = {
