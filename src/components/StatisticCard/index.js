@@ -32,21 +32,17 @@ function countReadyChapters (book) {
 }
 
 function totalSubsectionsCount (book) {
-  var total = 0
-  book.chapters.forEach((chapter) => {
-    total += chapter.subsections.length
-  })
-  return total
+  return book.chapters.reduce(
+    (acc, chapter) => acc + chapter.subsections.length,
+    0
+  )
 }
 
 function readySubsectionsCount (book) {
-  var totalReady = 0
-  book.chapters.forEach((chapter) => {
-    chapter.subsections.forEach((subsection) => {
-      subsection.ready && (totalReady += 1)
-    })
-  })
-  return totalReady
+  return book.chapters.reduce(
+    (acc, chapter) => acc + chapter.subsections.filter(s => s.ready).length,
+    0
+  )
 }
 
 export default connect(mapStateToProps)(StatisticCard);

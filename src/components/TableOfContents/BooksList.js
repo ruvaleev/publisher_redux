@@ -5,7 +5,7 @@ import BookCard from '../BookCard';
 function BooksList ({books}) {
   return (
     books.map((book, i) => (
-      <BookCard key={`book_${book._id}`} book={book}/>
+      <BookCard key={book._id} book={book}/>
     ))
   )
 }
