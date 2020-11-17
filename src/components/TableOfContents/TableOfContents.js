@@ -3,10 +3,10 @@ import React from 'react';
 import BooksList from './BooksList';
 import Menu from './Menu';
 
-function TableOfContents ({isLoading, isError, error, books, undo, redo}) {
+function TableOfContents ({isLoading, isError, error, books}) {
   return (
     <>
-      <Menu undo={undo} redo={redo}/>
+      <Menu/>
       {
         isLoading
           ? <div>Loading...</div>

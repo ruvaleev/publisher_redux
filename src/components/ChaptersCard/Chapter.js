@@ -6,11 +6,11 @@ import SubsectionsList from '../SubsectionsCard';
 import isReady from '../shared/isReady';
 import { addSubsection } from '../../redux/slices/books';
 
-function ChapterForm ({onSubmit, title, className}) {
+function SubsectionForm ({onSubmit, title, className}) {
   return (
     <td className={className}>
       <form onSubmit={onSubmit}>
-        <input type='text' name='title' className='mr-4'/>
+        <input type='text' name='title' className='mr-4' data-testid='Add subsection'/>
         <button>{title}</button>
       </form>
     </td>
@@ -24,13 +24,13 @@ const Chapter = ({chapter, editable, addSubsection, bookId}) => {
       <SubsectionsList bookId={bookId} chapterId={chapter.id}/>
       {
         editable &&
-          <ChapterForm
+          <SubsectionForm
             onSubmit={(e) => {
               e.preventDefault();
               addSubsection({bookId: bookId, chapterId: chapter.id, title: e.target.title.value });
               e.target.title.value = '';
             }}
-            title='Add subsection'
+            title='Add subsectiona'
             className='pl-4'/>
       }
     </tr>

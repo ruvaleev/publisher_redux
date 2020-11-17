@@ -3,7 +3,7 @@ import React from 'react';
 import Title from '../shared/Title';
 import ChaptersList from '../ChaptersCard';
 
-function SubsectionForm ({onSubmit, title, className}) {
+function ChapterForm ({onSubmit, title, className}) {
   return (
     <td className={className}>
       <form onSubmit={onSubmit}>
@@ -23,7 +23,7 @@ const BookCard = ({book, chapterAdd, editable}) => {
         <tr>
           {
             editable &&
-              <SubsectionForm
+              <ChapterForm
                 onSubmit={(e) => {
                   e.preventDefault();
                   chapterAdd({bookId: book._id, title: e.target.title.value });
