@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Checkbox ({callback, isChecked}) {
+function Checkbox ({callback, isChecked, ...inputProps}) {
   return (
     <td>
-      <input onChange={callback}  type='checkbox' checked={isChecked}/>
+      <input onChange={callback}  type='checkbox' checked={isChecked} {...inputProps}/>
     </td>
   )
 }

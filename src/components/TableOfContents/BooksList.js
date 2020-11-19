@@ -1,11 +1,11 @@
 import React from 'react';
 
-import BookCard from '../BookCard';
+import Book from '../BookCard';
 
 function BooksList ({books}) {
   return (
     books.map((book, i) => (
-      <BookCard key={book._id} book={book}/>
+      <Book key={book._id} book={book}/>
     ))
   )
 }

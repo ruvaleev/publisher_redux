@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import BookCard from './BookCard';
+import Book from './Book';
 import { addChapter } from '../../redux/slices/books';
 
 const mapStateToProps = (state) => ({
@@ -11,4 +11,4 @@ const mapDispatchToProps = (dispatch) => ({
   chapterAdd: (data) => dispatch(addChapter(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookCard);
+export default connect(mapStateToProps, mapDispatchToProps)(Book);

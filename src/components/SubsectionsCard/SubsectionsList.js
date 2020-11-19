@@ -1,25 +1,14 @@
 import React from 'react';
 
-import Checkbox from '../shared/Checkbox';
-import Title from '../shared/Title';
+import Subsection from './Subsection';
 
-function SubsectionsList ({readySubsectionToggle, subsections, editable, bookId, chapterId}) {
+function SubsectionsList ({subsections, bookId, chapterId}) {
   return (
     <td>
       <table>
         <tbody>
           {subsections && subsections.map((subsection, i) => (
-            <tr key={subsection.id} >
-              <Title title={subsection.title} className='pl-4'/>
-              {
-                editable &&
-                  <Checkbox
-                    callback={() => readySubsectionToggle(
-                      {bookId: bookId, chapterId: chapterId, subsectionId: subsection.id}
-                    )}
-                    isChecked={subsection.ready}/>
-              }
-            </tr>
+            <Subsection key={i} subsection={subsection} bookId={bookId} chapterId={chapterId}/>
           ))}
         </tbody>
       </table>
