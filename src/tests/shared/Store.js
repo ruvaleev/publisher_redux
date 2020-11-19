@@ -1,6 +1,6 @@
 import uuid from 'uuid-random';
 
-const defaultBooksReducer = {
+const defaultBooksReducer = { present: {
   books: [
     {
       _id: uuid(), title: 'Тихий Дон', chapters: [
@@ -8,7 +8,7 @@ const defaultBooksReducer = {
       ]
     }
   ], isLoading: false, isError: false, error: null
-}
+}}
 
 const defaultTableOfContentsReducer = { editable: false }
 const defaultFiltersReducer = { value: 'SHOW_ALL' }
