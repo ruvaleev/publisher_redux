@@ -19,12 +19,12 @@ const filters = {
 };
 
 function selectChapters (books, bookId, currentFilter) {
-  let book = books.find((book) => { return book.id == bookId })
+  let book = books.find((book) => { return book._id == bookId })
   return book.chapters.filter(filters[currentFilter])
 }
 
 const mapStateToProps = (state, ownProperty) => ({
-  chapters: selectChapters(state.booksReducer.books, ownProperty.bookId, state.filtersReducer.value)
+  chapters: selectChapters(state.booksReducer.present.books, ownProperty.bookId, state.filtersReducer.value)
 })
 
 const mapDispatchToProps = (dispatch) => ({

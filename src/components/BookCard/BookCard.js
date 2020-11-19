@@ -1,22 +1,35 @@
 import React from 'react';
 
 import Title from '../shared/Title';
-import TitleForm from '../shared/TitleForm';
 import ChaptersList from '../ChaptersCard';
+
+function ChapterForm ({onSubmit, title, className}) {
+  return (
+    <td className={className}>
+      <form onSubmit={onSubmit}>
+        <input type='text' name='title' className='mr-4'/>
+        <button>{title}</button>
+      </form>
+    </td>
+  )
+}
 
 const BookCard = ({book, chapterAdd, editable}) => {
   return (
     <table className='mx-12'>
       <thead><tr><Title title={book.title} className='p-2 text-xl'/></tr></thead>
       <tbody className='flex flex-col'>
-        <ChaptersList bookId={book.id}/>
+        <ChaptersList bookId={book._id}/>
         <tr>
           {
             editable &&
-              <TitleForm
+              <ChapterForm
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  chapterAdd({bookId: book._id, title: e.target.title.value });
+                  e.target.title.value = '';
+                }}
                 title='Add chapter'
-                bookId={book.id}
-                dispatch={chapterAdd}
                 className='pt-4'/>
           }
         </tr>

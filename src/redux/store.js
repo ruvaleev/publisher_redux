@@ -1,12 +1,12 @@
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 
 import rootReducer from './reducers';
-import books from './books.json';
+import APIMiddleware from './middleware/API';
 
-const store = createStore(
-  rootReducer,
-  { booksReducer: { books: books } },
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(APIMiddleware),
+  devTools: process.env.NODE_ENV !== 'production'
+});
 
 export default store;

@@ -3,11 +3,18 @@ import React from 'react';
 import BooksList from './BooksList';
 import Menu from './Menu';
 
-function TableOfContents ({books}) {
+function TableOfContents ({isLoading, isError, error, books}) {
   return (
     <>
       <Menu/>
-      <BooksList books={books}/>
+      {
+        isLoading
+          ? <div>Loading...</div>
+          : 
+          isError
+            ? <div>{error}</div>
+            : <BooksList books={books}/>
+      }
     </>
     )
 }

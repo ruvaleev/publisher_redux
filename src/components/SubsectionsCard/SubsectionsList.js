@@ -9,7 +9,7 @@ function SubsectionsList ({readySubsectionToggle, subsections, editable, bookId,
       <table>
         <tbody>
           {subsections && subsections.map((subsection, i) => (
-            <tr key={`subsection_${subsection.id}_book_${bookId}_chapter_${chapterId}`} >
+            <tr key={subsection.id} >
               <Title title={subsection.title} className='pl-4'/>
               {
                 editable &&

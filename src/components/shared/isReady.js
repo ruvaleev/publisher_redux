@@ -1,8 +1,5 @@
 function isReady (chapter) {
-  let readiness = chapter.subsections.map((subsection) => {
-    return subsection.ready
-  })
-  return !readiness.includes(false)
+  return !chapter.subsections.some((subsection) => !subsection.ready )
 }
 
 export default isReady;
