@@ -28,19 +28,19 @@ const booksSlice = createSlice({
   initialState,
   reducers: {
     addChapter(state, action) {
-      let book = state.books.find((book) => book._id == action.payload.bookId)
+      let book = state.books.find((book) => book._id === action.payload.bookId)
       book.chapters = book.chapters.concat({ id: uuid(), title: action.payload.title, subsections: [] })
     },
     addSubsection(state, action) {
-      let book = state.books.find((book) => book._id == action.payload.bookId)
-      let chapter = book.chapters.find((chapter) => chapter.id == action.payload.chapterId)
+      let book = state.books.find((book) => book._id === action.payload.bookId)
+      let chapter = book.chapters.find((chapter) => chapter.id === action.payload.chapterId)
       chapter.subsections =
         chapter.subsections.concat({ id: uuid(), title: action.payload.title, ready: false })
     },
     toggleSubsectionReady(state, action) {
-      let book = state.books.find((book) => book._id == action.payload.bookId)
-      let chapter = book.chapters.find((chapter) => chapter.id == action.payload.chapterId)
-      let subsection = chapter.subsections.find((subsection) => subsection.id == action.payload.subsectionId)
+      let book = state.books.find((book) => book._id === action.payload.bookId)
+      let chapter = book.chapters.find((chapter) => chapter.id === action.payload.chapterId)
+      let subsection = chapter.subsections.find((subsection) => subsection.id === action.payload.subsectionId)
       subsection.ready = !subsection.ready
     }
   },

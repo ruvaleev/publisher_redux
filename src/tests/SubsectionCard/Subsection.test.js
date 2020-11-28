@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 
-import Subsection from '../../components/SubsectionsCard/Subsection';
+import Subsection from '../../components/SubsectionCard';
 import Store from '../shared/Store';
 import { toggleSubsectionReady } from '../../redux/slices/books';
 

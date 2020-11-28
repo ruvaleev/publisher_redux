@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Subsection from './Subsection';
+import Subsection from '../SubsectionCard';
 
 function SubsectionsList ({subsections, bookId, chapterId}) {
   return (

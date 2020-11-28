@@ -1,7 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { toggleSubsectionReady } from '../../redux/slices/books';
 import Checkbox from '../shared/Checkbox';
 import Title from '../shared/Title';
 
@@ -21,12 +19,4 @@ function Subsection ({readySubsectionToggle, editable, subsection, bookId, chapt
   )
 }
 
-const mapStateToProps = (state) => ({
-  editable: state.tableOfContentsReducer.editable
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  readySubsectionToggle: (data) => dispatch(toggleSubsectionReady(data))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Subsection);
+export default Subsection;
