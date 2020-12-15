@@ -1,0 +1,23 @@
+---
+name: BookStatisticCard
+---
+
+import '../assets/main.css';
+import BookStatisticCard from '../components/StatisticCard/BookStatisticCard';
+import { Playground } from 'docz';
+
+# BookStatisticCard
+
+Компонент для отображения статистики готовности книги.
+
+<Playground>
+  <BookStatisticCard
+    book={{
+      title: 'Заголовок книги',
+      subsectionsCount: 0,
+      readySubsectionsCount: 1,
+      totalChaptersCount: 2,
+      readyChaptersCount: 3,
+      readyStatus: '99%'
+    }}/>
+</Playground>

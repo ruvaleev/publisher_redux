@@ -1,0 +1,32 @@
+---
+name: Subsection
+---
+
+import { Playground } from 'docz';
+import { Provider } from 'react-redux';
+import '../assets/main.css';
+import Subsection from '../components/SubsectionCard/Subsection';
+
+# Subsection
+
+Компонент для отображения Подраздела книги. При клике вызывается метод 'readySubsectionToggle' из контекста.
+Поле ввода скрыто, если аттрибут 'editable' имеет значение false, и доступно, если значение true
+
+<Playground>
+  <table>
+    <tbody>
+      <Subsection
+        readySubsectionToggle={()=>{alert('readySubsectionToggle has been called')}}
+        editable={true}
+        subsection={{id: 0, title: 'подраздел 1', ready: false}}
+        bookId='0'
+        chapterId='0' />
+      <Subsection
+        readySubsectionToggle={()=>{alert('readySubsectionToggle has been called')}}
+        editable={false}
+        subsection={{id: 0, title: 'подраздел 1', ready: false}}
+        bookId='0'
+        chapterId='0' />
+    </tbody>
+  </table>
+</Playground>
