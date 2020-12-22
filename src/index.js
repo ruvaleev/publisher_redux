@@ -7,7 +7,14 @@ if (process.env.NODE_ENV === 'development') {
   require('mocks');
 }
 
-ReactDOM.render(
-  <App/>,
-  document.getElementById('bookList')
-)
+if (process.env.NODE_ENV === 'production') {
+  ReactDOM.hydrate(
+    <App/>,
+    document.getElementById('bookList')
+  );
+} else {
+  ReactDOM.render(
+    <App/>,
+    document.getElementById('bookList')
+  )
+}
