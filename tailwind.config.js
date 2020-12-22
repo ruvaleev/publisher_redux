@@ -1,7 +1,11 @@
 module.exports =
   {
     future: {},
-    purge: [],
+    purge: {
+      mode: 'layers',
+      layers: ['components', 'utilities'],
+      content: ['./src/**/*.js']
+    },
     theme: {
       extend: {
         padding: {
