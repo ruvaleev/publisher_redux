@@ -4,14 +4,18 @@ import TableOfContents from './components/TableOfContents';
 import StatisticCard from './components/StatisticCard';
 
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import createStore from './redux/store';
 import { fetchBooks } from './redux/slices/books';
 
-store.dispatch(fetchBooks());
+const preloadedState = window.__PRELOADED_STATE__;
+delete window.__PRELOADED_STATE__;
+const store = createStore(preloadedState);
 
-const onLoad = () => {
+const onLoad = (store) => {
   const promises = [];
-  promises.push(fetchBooks());
+  promises.push(
+    store.dispatch(fetchBooks())
+  );
 
   return Promise.all(promises);
 }
@@ -19,7 +23,7 @@ const onLoad = () => {
 class App extends React.Component {
   componentDidMount() {
     if (process.env.NODE_ENV !== 'production')
-      onLoad();
+      onLoad(store);
   }
   
   render() {
