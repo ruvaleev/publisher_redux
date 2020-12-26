@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 
 import { renderFullPage } from './renderFullPage';
-import store from '../../src/redux/store';
+import createStore from '../../src/redux/store';
 import { fetchBooks } from '../../src/redux/slices/books';
 import TableOfContents from '../../src/components/TableOfContents';
 import StatisticCard from '../../src/components/StatisticCard';
@@ -12,12 +12,14 @@ import StatisticCard from '../../src/components/StatisticCard';
 function loadData(store) {
   const promises = [];
 
-  promises.push(fetchBooks())
+  promises.push(store.dispatch(fetchBooks()))
 
   return Promise.all(promises);
 }
 
 export async function handleRender(req, res) {
+  const store = createStore();
+
   await loadData(store);
 
   const html = renderToString(
